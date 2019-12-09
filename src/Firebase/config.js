@@ -1,3 +1,4 @@
+
 const config = {
     apiKey: "AIzaSyB8dVApULvVEavnM913d8yaWEVv3CINYrY",
     authDomain: "firetodo-13ec8.firebaseapp.com",
@@ -10,3 +11,4 @@ const config = {
   };
 
   export default config;
+

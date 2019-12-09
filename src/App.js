@@ -5,6 +5,8 @@ import ListItems from './ListItems'
 import Firebase from './Firebase/config'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import {todosRef} from './Firebase/firebase'
+
 
 
 
@@ -27,7 +29,9 @@ class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
   }
+
   addItem(e){
+    console.log('aaaaa', e)
     e.preventDefault();
     console.log('DATA SAVED');
     const newItem = this.state.currentItem;
@@ -39,6 +43,8 @@ class App extends React.Component {
         text:'',
         key:''
       }
+    },() => {
+      todosRef.push().set(items);
     })
     }
   }
