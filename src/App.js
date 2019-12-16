@@ -56,16 +56,21 @@ class App extends React.Component {
       }
     })
   }
+
+
   deleteItem(key){
-   
-    const filteredItems= this.state.items.filter(item =>
+   const filteredItems= this.state.items.filter(item =>
       item.key!==key);
     this.setState({
       items: filteredItems
-    })
 
-  }
-  setUpdate(text,key){
+      },() => {
+    todosRef.remove().set(filteredItems);
+      })
+}
+ 
+
+setUpdate(text,key){
     
     console.log("items:"+this.state.items);
     const items = this.state.items;
@@ -83,11 +88,22 @@ class App extends React.Component {
   }
 
   writeUserData = () => {
-    Firebase.database().ref('/').set(this.state);
+    Firebase.database().ref('todos').opn(this.state);
     console.log('DATA SAVED');
   }
-  
 
+  // getTodos (){
+  //   firebase.database().ref('todos').on('value', (todo) => {
+  //     const todos =todo.val();
+  //     Object.keys(todos).map(todoItem => {
+  //       let todo = todos[todoItem];
+  //       this.setState({
+  //           todos:[...this.state.todos, todo]
+  //       })
+  //     })
+  //   })
+  // }
+  
  render(){
   return (
     <div className="App">
